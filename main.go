@@ -8,6 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 	controller "github.com/haseebarifseecs/rest-api/controllers"
+	middleware "github.com/haseebarifseecs/rest-api/middleware"
 )
 
 func listener(r *mux.Router) {
@@ -36,6 +37,6 @@ func main() {
 	deleteRoute.PathPrefix("/user").HandlerFunc(controller.DeleteHandler)
 	readRoute := router.HandleFunc("/get", controller.ReadHandler)
 	readRoute.PathPrefix("/user").HandlerFunc(controller.ReadHandler)
-
+	router.NotFoundHandler = http.HandlerFunc(middleware.Logs)
 	listener(router)
 }
