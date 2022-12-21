@@ -1,6 +1,10 @@
 package model
 
 type User struct {
-	id   int
-	name string
+	Id   int
+	Name string
+}
+
+func (u *User) UpdateName(name string) {
+	u.Name = name
 }
