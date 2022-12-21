@@ -27,9 +27,14 @@ func listener(r *mux.Router) {
 
 func main() {
 	router := mux.NewRouter()
+	// router.PathPrefix("/user")
+	// router.HandleFunc("/create", controller.CreateHandler).Methods("GET").PathPrefix("/user")
 	// r.PathPrefix("/user/")
 	subRouter := router.PathPrefix("/user").Subrouter()
-	subRouter.HandleFunc("/create", controller.CreateHandler).Methods("GET")
+	subRouter.HandleFunc("/create", controller.CreateHandler).Methods("POST")
+	subRouter.HandleFunc("/get", controller.CreateHandler).Methods("GET")
+	subRouter.HandleFunc("/update", controller.CreateHandler).Methods("GET")
+	subRouter.HandleFunc("/delete", controller.CreateHandler).Methods("GET")
 	// createRoute := router.HandleFunc("/create", controller.CreateHandler).Methods("GET")
 	// createRoute.PathPrefix("/user").HandlerFunc(controller.CreateHandler)
 	// updateRoute := router.HandleFunc("/update", controller.UpdateHandler)
